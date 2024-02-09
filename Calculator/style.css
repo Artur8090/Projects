@@ -1,0 +1,32 @@
+table{
+    padding: 10px;
+    background-color: #696969;
+}
+.table-item{
+    padding: 20px;
+    border-radius: 2px;
+    background-color: rgb(209, 209, 209);
+}
+#answer {
+    height: 20px;
+}
+#add, #subtract, #multiply, #divide, #equal, #percent{
+    background-color: rgb(174, 174, 174);
+}
+.calculator-body{
+    margin-left: 41.5%;
+
+}
+.wrapper{
+    text-align: center;
+}
+body{
+    background-color: rgb(203, 255, 214);
+}
+h1{
+    width: 20%;
+    margin-left: 39.8%;
+    margin-top: 10%;
+    border: 2px rgb(9, 11, 9) solid;
+    border-radius: 30px;
+}
