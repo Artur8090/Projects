@@ -1,2 +1,2 @@
 Hi im Artur
-Need to [contact someone](/Projects/calculator/index.html) on the team?
+Need to [contact someone](/Projects/Calculator/index.html) on the team?
