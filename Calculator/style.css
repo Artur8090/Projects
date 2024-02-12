@@ -1,32 +1,51 @@
+
+@font-face {
+    font-family: "header";
+    src: url(fonts/Lexend/Lexend-VariableFont_wght.ttf);
+}
+@font-face {
+    font-family: "calculator";
+    src: url(fonts/calculator/Calculator.ttf);
+}
+
 table{
     padding: 10px;
     background-color: #696969;
 }
 .table-item{
+    font-family: "calculator";
+    font-size: 40px;
     padding: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
     border-radius: 2px;
     background-color: rgb(209, 209, 209);
 }
+
 #answer {
-    height: 20px;
+    height: 50px;
 }
 #add, #subtract, #multiply, #divide, #equal, #percent{
     background-color: rgb(174, 174, 174);
 }
-.calculator-body{
-    margin-left: 41.5%;
 
+.calculator-body{
+    margin-left: 35%;
 }
+
 .wrapper{
     text-align: center;
 }
 body{
-    background-color: rgb(203, 255, 214);
+    background-image: url(imgs/bg.png);
+    background-size: cover;
 }
 h1{
+    font-family: "header";
     width: 20%;
     margin-left: 39.8%;
     margin-top: 10%;
     border: 2px rgb(9, 11, 9) solid;
     border-radius: 30px;
+    background-color: #696969;
 }

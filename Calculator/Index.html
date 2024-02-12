@@ -12,37 +12,34 @@
         <div class="calculator-body">
             <table border="2">
                 <tr>
-                    <td class="table-item" colspan="4" id="answer"></td>
+                    <td class="table-item" colspan="4"><span class="answer"></span></td>
                 </tr>
                 <tr>
-                    <td class="table-item">1</td>
-                    <td class="table-item">2</td>
-                    <td class="table-item">3</td>
-                    <td class="table-item" id="add">+</td>
+                    <td class="table-item" onclick="add(1)">1</td>
+                    <td class="table-item" onclick="add(2)">2</td>
+                    <td class="table-item" onclick="add(3)">3</td>
+                    <td class="table-item" id="add" onclick="add(addition)">+</td>
                 </tr>
                 <tr>
-                    <td class="table-item">4</td>
-                    <td class="table-item">5</td>
-                    <td class="table-item">6</td>
-                    <td class="table-item" id="subtract">-</td>
+                    <td class="table-item" onclick="add(4)">4</td>
+                    <td class="table-item" onclick="add(5)">5</td>
+                    <td class="table-item" onclick="add(6)">6</td>
+                    <td class="table-item" id="subtract" onclick="add(subtract)" >-</td>
                 </tr>
                 <tr>
-                    <td class="table-item">7</td>
-                    <td class="table-item">8</td>
-                    <td class="table-item">9</td>
-                    <td class="table-item" id="divide">/</td>
+                    <td class="table-item" onclick="add(7)">7</td>
+                    <td class="table-item" onclick="add(8)">8</td>
+                    <td class="table-item" onclick="add(9)">9</td>
+                    <td class="table-item" id="divide" onclick="add(divide)">/</td>
                 </tr>
                 <tr>
-                    <td class="table-item" id="percent">%</td>
-                    <td class="table-item">0</td>
-                    <td class="table-item" id="multiply">*</td>
-                    <td class="table-item" id="equal">=</td>
+                    <td class="table-item" id="percent" onclick="add(percentage)">%</td>
+                    <td class="table-item" onclick="add(0)" id="0">0</td>
+                    <td class="table-item" id="multiply" onclick="add(multiply)">*</td>
+                    <td class="table-item" id="equal" onclick="equate()">=</td>
                 </tr>
             </table>
         </div>
-
-
-
     </div>
     <script src="script.js"></script>
 </body>
