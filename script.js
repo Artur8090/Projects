@@ -7,7 +7,10 @@ function pressButton(c) {
         if(number.length>0){
             equation.push(number)
         }
-
+        if(equation.length > 3){
+            equation[0] += equation[1];
+            equation.splice(1,1);
+        }
         if(c != '='){
             equation.push(c);
         }
@@ -16,8 +19,7 @@ function pressButton(c) {
         number=""
     } else {
 
-            number+=c;
-    
+        number+=c;
        
 
     }
