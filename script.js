@@ -85,3 +85,9 @@ function isOp(c){
     }
     false
 }
+
+function cancel(){
+    number = "";
+    equation = [];
+    showAnswer('')
+}
