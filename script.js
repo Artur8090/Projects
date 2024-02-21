@@ -15,7 +15,10 @@ function pressButton(c) {
         console.log('eq', equation)
         number=""
     } else {
-        number+=c;
+
+            number+=c;
+    
+       
 
     }
 
@@ -43,8 +46,9 @@ function equate() {
 
     showAnswer(equation[0]);
     equation=[]
+    answer += '';
     equation.push(answer)
-    if(answer == 0){
+    if(answer == "0"){
 
         equation.shift();
     }
