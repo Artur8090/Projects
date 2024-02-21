@@ -16,6 +16,7 @@ function pressButton(c) {
         number=""
     } else {
         number+=c;
+
     }
 
     console.log('number:', number)
@@ -32,6 +33,7 @@ function equate() {
     console.log('cal equation', equation.length)
 
     while(equation.length>=3){
+
          answer = calc(equation[0], equation[2], equation[1])
          equation[2] = ''+answer
          equation = equation.splice(2,equation.length)
@@ -42,6 +44,11 @@ function equate() {
     showAnswer(equation[0]);
     equation=[]
     equation.push(answer)
+    if(answer == 0){
+
+        equation.shift();
+    }
+    
 }
 
 function calc(num1,num2,opp){
