@@ -8,8 +8,13 @@ function pressButton(c) {
             equation.push(number)
         }
         if(equation.length > 3){
-            equation[0] += equation[1];
-            equation.splice(1,1);
+            if(equation[1] == "+" || equation[1] == "-" || equation[1] == "*" || equation[1] == "/" || equation == "%"){
+                
+            } else{
+                equation[0] += equation[1];
+                equation.splice(1,1);
+            }
+
         }
         if(c != '='){
             equation.push(c);
