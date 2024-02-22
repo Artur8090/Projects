@@ -9,13 +9,15 @@
 }
 
 table{
+    width: 30vw;
+    height: 50vh;
     padding: 10px;
     background-color: #696969;
 }
 .table-item{
     font-family: "calculator";
     font-size: 40px;
-    padding: 20px;
+    padding: 3%;
     padding-left: 40px;
     padding-right: 40px;
     border-radius: 2px;

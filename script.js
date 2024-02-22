@@ -8,7 +8,7 @@ function pressButton(c) {
             equation.push(number)
         }
         if(equation.length > 3){
-            if(equation[1] == "+" || equation[1] == "-" || equation[1] == "*" || equation[1] == "/" || equation == "%"){
+            if(equation[1] == "+" || equation[1] == "-" || equation[1] == "*" || equation[1] == "/" || equation[1] == "%" || equation[1] == "^"){
                 
             } else{
                 equation[0] += equation[1];
@@ -76,6 +76,8 @@ function calc(num1,num2,opp){
         return  number1 / number2;
     } else if (opp == "%") {
         return (number1 / 100) * number2;
+    } else if(opp == "^"){
+        return number1 ** number2;
     }
 }
 
@@ -85,7 +87,7 @@ function showAnswer(answer){
 }
 
 function isOp(c){
-    if (c == "+" || c == "-" || c == "*" || c == "/" || c == "%" || c == "=") {
+    if (c == "+" || c == "-" || c == "*" || c == "/" || c == "%" || c == "=" || c == "^") {
         return true;
     }
     false
