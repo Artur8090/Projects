@@ -8,6 +8,12 @@
     src: url(fonts/calculator/Calculator.ttf);
 }
 
+body{
+    background-image: url(https://images.rawpixel.com/image_1100/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0zNzNiYXRjaDEzLTA4Mi1rcHhrOW5nay5qcGc.jpg);
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
 table{
     width: 30vw;
     height: 50vh;
@@ -32,22 +38,29 @@ table{
 }
 
 .calculator-body{
-    margin-left: 35%;
+    margin-left: 33%;
 }
 
 .wrapper{
     text-align: center;
 }
-body{
-    background-image: url(https://images.rawpixel.com/image_1100/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0zNzNiYXRjaDEzLTA4Mi1rcHhrOW5nay5qcGc.jpg);
-    background-size: cover;
-}
+
 h1{
     font-family: "header";
-    width: 20%;
-    margin-left: 37%;
-    margin-top: 10%;
-    border: 4px rgb(255, 1, 149)solid;
-    border-radius: 30px;
-    background-color: #696969;
+    color: beige;
+}
+@media only screen and (max-width: 900px){
+h1{
+    font-size: 25px;
+}
+.calculator-body{
+    margin-left: 1%;
+}
+.table-item{
+    font-size: 40px;
+    padding: 2%;
+    padding-left: 20px;
+    padding-right: 20px;
+
+}
 }
