@@ -96,5 +96,5 @@ function isOp(c){
 function cancel(){
     number = "";
     equation = [];
-    showAnswer('')
+    showAnswer('Enter Value')
 }
