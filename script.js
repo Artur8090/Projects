@@ -4,97 +4,138 @@ let number = "";
 function pressButton(c) {
 
     if (isOp(c)) {
-        if(number.length>0){
+        if (number.length > 0) {
             equation.push(number)
         }
-        if(equation.length > 3){
-            if(equation[1] == "+" || equation[1] == "-" || equation[1] == "*" || equation[1] == "/" || equation[1] == "%" || equation[1] == "^"){
-                
-            } else{
+        if (equation.length > 3) {
+            if (!isOp(equation[1])) {
                 equation[0] += equation[1];
-                equation.splice(1,1);
+                equation.splice(1, 1);
             }
 
         }
-        if(c != '='){
+        if (c != '=') {
             equation.push(c);
         }
-        
+
         console.log('eq', equation)
-        number=""
+        number = ""
     } else {
-
-        number+=c;
-       
-
+        number += c;
     }
 
     console.log('number:', number)
     showAnswer(convertEqToString(equation, number))
 }
 
-function convertEqToString(equation, currNumber){
-    return equation.join("")+currNumber
+function convertEqToString(equation, currNumber) {
+    return equation.join("") + currNumber
 }
 
+
 function equate() {
-    pressButton("=")
-    let answer
-    console.log('cal equation', equation.length)
-
-    while(equation.length>=3){
-
-         answer = calc(equation[0], equation[2], equation[1])
-         equation[2] = ''+answer
-         equation = equation.splice(2,equation.length)
-         console.log('eq', equation)
-         console.log('eq', equation)
-    }
+    pressButton('=')
+    
+    let answer = doCalculation(equation)
 
     showAnswer(equation[0]);
-    equation=[]
+    equation = []
     answer += '';
     equation.push(answer)
-    if(answer == "0"){
+    if (answer == "0") {
 
         equation.shift();
     }
-    
+
 }
 
-function calc(num1,num2,opp){
+function doCalculation(eq){
+    console.log('cal equation', eq)
+
+    let opperators = eq.filter( (s) => (isHiPriorityOperator(s)) )
+    opperators = opperators.concat(eq.filter(s => (isLowPriorityOperator(s))) )
+    console.log('opearators', opperators)
+
+    for (let i = 0; i < opperators.length; i++) {
+        let j = eq.indexOf(opperators[i]);
+        console.log('index \''+opperators[i]+"'=",j);
+        answer = calc(eq[j - 1], eq[j + 1], eq[j]);
+        console.log('answer of '+eq[j - 1] + eq[j] + eq[j + 1]+"=",answer);
+        answer += '';
+        eq.splice(j-1, 3,answer)
+        console.log('eq',eq)
+    }
+    console.log('answer', eq[0])
+    return eq[0]
+}
+
+function tests() {
+    console.log('run tests')
+    assert(doCalculation(["2","+","2"])==4, "2+2=4")
+    assert(doCalculation(["2","*","2"])==4, "2*2=4")
+    assert(doCalculation(["2","+","2", "-","3"])==1, "2+2-3=1")
+    assert(doCalculation(["2","+","2", "*","3"])==8, "2+2*3=8")
+    assert(doCalculation(["2","+","2", "*","3","+","1"])==9, "2+2*3+1=9")
+    assert(doCalculation(["2","+","1","+","2", "*","3"])==9, "2+1+2*3=9")
+    assert(doCalculation(["2","+","2", "/","2","+","1"])==4, "2+2/2+1=4")
+    assert(doCalculation(["2","+","2", "/","2","*","2","+","1"])==5, "2+2/2*2+1=5")
+    assert(doCalculation(["2","+","2", "/","2","*","2","-","1"])==3, "2+2/2*2-1=3")
+    assert(doCalculation(["2","-","1","+","2", "/","2","*","2","-","1"])==2, "2-1+2/2*2-1=2")
+}
+
+function assert(condition, msg){
+    if(!condition){
+        throw new Error(msg)
+    }
+    console.log(msg + ' passed')
+}
+
+function calc(num1, num2, opp) {
     let number1 = parseInt(num1);
     let number2 = parseInt(num2);
 
     if (opp == "+") {
-        return  number1 + number2;
+        return number1 + number2;
     } else if (opp == "-") {
-        return  number1 - number2;
-    } else if (opp == "*") { 
-        return  number1 * number2;
+        return number1 - number2;
+    } else if (opp == "*") {
+        return number1 * number2;
     } else if (opp == "/") {
-        return  number1 / number2;
+        return number1 / number2;
     } else if (opp == "%") {
         return (number1 / 100) * number2;
-    } else if(opp == "^"){
+    } else if (opp == "^") {
         return number1 ** number2;
     }
 }
 
 
-function showAnswer(answer){
+function showAnswer(answer) {
     document.querySelector(".answer").innerText = answer;
 }
 
-function isOp(c){
-    if (c == "+" || c == "-" || c == "*" || c == "/" || c == "%" || c == "=" || c == "^") {
+function isOp(c) {
+    if (isLowPriorityOperator(c) || isHiPriorityOperator(c) || c == "=" ) {
         return true;
     }
-    false
+    return false
+}
+function isHiPriorityOperator(c){
+    if (c == "*" || c == "/" || c == "%" ||c == "^") {
+        return true;
+    }
+    return false
+}
+function isLowPriorityOperator(c){
+    if(c == "+" || c == "-"){
+        return true
+    }
+    return false
 }
 
-function cancel(){
+function cancel() {
     number = "";
     equation = [];
+    opperators = [];
     showAnswer('Enter Value')
 }
