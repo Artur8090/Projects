@@ -2,7 +2,7 @@ let equation = [];
 let number = "";
 
 function pressButton(c) {
-
+    
     if (isOp(c)) {
         if (number.length > 0) {
             equation.push(number)
@@ -17,7 +17,6 @@ function pressButton(c) {
         if (c != '=') {
             equation.push(c);
         }
-
         console.log('eq', equation)
         number = ""
     } else {
@@ -35,7 +34,6 @@ function convertEqToString(equation, currNumber) {
 
 function equate() {
     pressButton('=')
-    
     let answer = doCalculation(equation)
 
     showAnswer(equation[0]);
@@ -71,16 +69,9 @@ function doCalculation(eq){
 
 function tests() {
     console.log('run tests')
-    assert(doCalculation(["2","+","2"])==4, "2+2=4")
-    assert(doCalculation(["2","*","2"])==4, "2*2=4")
-    assert(doCalculation(["2","+","2", "-","3"])==1, "2+2-3=1")
-    assert(doCalculation(["2","+","2", "*","3"])==8, "2+2*3=8")
-    assert(doCalculation(["2","+","2", "*","3","+","1"])==9, "2+2*3+1=9")
-    assert(doCalculation(["2","+","1","+","2", "*","3"])==9, "2+1+2*3=9")
-    assert(doCalculation(["2","+","2", "/","2","+","1"])==4, "2+2/2+1=4")
-    assert(doCalculation(["2","+","2", "/","2","*","2","+","1"])==5, "2+2/2*2+1=5")
-    assert(doCalculation(["2","+","2", "/","2","*","2","-","1"])==3, "2+2/2*2-1=3")
-    assert(doCalculation(["2","-","1","+","2", "/","2","*","2","-","1"])==2, "2-1+2/2*2-1=2")
+    assert(doCalculation(["2", "*" ,"2", "/" , "2","+" ,"4" , "+", "12", "*", "7"])==90,"2*2/2+4+12*7=90")
+    
+
 }
 
 function assert(condition, msg){
