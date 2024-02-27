@@ -16,6 +16,8 @@ function pressButton(c) {
         }
         if (c != '=') {
             equation.push(c);
+        } else{
+            equate();
         }
         console.log('eq', equation)
         number = ""
@@ -33,7 +35,6 @@ function convertEqToString(equation, currNumber) {
 
 
 function equate() {
-    pressButton('=')
     let answer = doCalculation(equation)
 
     showAnswer(equation[0]);
