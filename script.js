@@ -70,12 +70,6 @@ function doCalculation(eq){
 
 
 
-function assert(condition, msg){
-    if(!condition){
-        throw new Error(msg)
-    }
-    console.log(msg + ' passed')
-}
 
 function calc(num1, num2, opp) {
     let number1 = parseInt(num1);
