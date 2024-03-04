@@ -1,8 +1,9 @@
 let equation = [];
 let number = "";
 let bracketCount = 1;
+
 function pressButton(c) {
-    if(c == 'bracket'){
+    if (c == 'bracket') {
         c = brackets();
     }
     if (isOp(c)) {
@@ -11,7 +12,7 @@ function pressButton(c) {
             equation.push(number)
         }
         if (equation.length > 3) {
-            if (!isOp(equation[1])  && !isOp(equation[0])) {
+            if (!isOp(equation[1]) && !isOp(equation[0])) {
                 equation[0] += equation[1];
                 equation.splice(1, 1);
             }
@@ -19,7 +20,7 @@ function pressButton(c) {
         }
         if (c != '=') {
             equation.push(c);
-        } else{
+        } else {
             equate();
         }
         console.log('eq', equation)
@@ -51,49 +52,49 @@ function equate() {
 
 }
 
-function doCalculation(eq){
+function doCalculation(eq) {
     console.log('cal equation', eq)
     let para = eq.filter((s) => (isHighestPriorityOperator(s)))
-    let opperators = eq.filter( (s) => (isHiPriorityOperator(s)) )
-    opperators = opperators.concat(eq.filter(s => (isLowPriorityOperator(s))) )
+    let opperators = eq.filter((s) => (isHiPriorityOperator(s)))
+    opperators = opperators.concat(eq.filter(s => (isLowPriorityOperator(s))))
     console.log('opperators', opperators)
     console.log('parantheses', para)
 
 
-while(eq.length >= 3){
-    if(para.length > 0){
-        for(let i = 0; i<para.length; i++){
-            let start = para.indexOf(para[i]);
-            let end = para.indexOf(para[i+1])
-            console.log("start:end",start,end)
+    while (eq.length >= 3) {
+        if (para.length > 0) {
+            for (let i = 0; i < para.length; i++) {
+                let start = para.indexOf(para[i]);
+                let end = para.indexOf(para[i + 1])
+                console.log("start:end", start, end)
 
-            for(let j = start; j<end; j++){
+                for (let j = start; j < end; j++) {
 
-                let k = eq.indexOf(opperators[j])
-                answer = calc(eq[k-1],eq[k+1],eq[k]);
-                answer+='';
-                eq.splice(k-1,3,answer);
-                if(eq.indexOf('(') == (eq.indexOf(')') -2)){
-                    eq.splice(eq.indexOf('('),3,answer);
+                    let k = eq.indexOf(opperators[j])
+                    answer = calc(eq[k - 1], eq[k + 1], eq[k]);
+                    answer += '';
+                    eq.splice(k - 1, 3, answer);
+                    if (eq.indexOf('(') == (eq.indexOf(')') - 2)) {
+                        eq.splice(eq.indexOf('('), 3, answer);
+                    }
                 }
+                para.splice(0, 2)
             }
-            para.splice(0,2)
-        }
-    } else{
-        for (let i = 0; i < opperators.length; i++) {
-            let j = eq.indexOf(opperators[i]);
-            console.log('index \''+opperators[i]+"'=",j);
-            answer = calc(eq[j - 1], eq[j + 1], eq[j]);
-            console.log('answer of '+eq[j - 1] + eq[j] + eq[j + 1]+"=",answer);
-            answer += '';
-            eq.splice(j-1, 3,answer)
-            console.log('eq',eq)
-        }
-        console.log('answer', eq[0])
+        } else {
+            for (let i = 0; i < opperators.length; i++) {
+                let j = eq.indexOf(opperators[i]);
+                console.log('index \'' + opperators[i] + "'=", j);
+                answer = calc(eq[j - 1], eq[j + 1], eq[j]);
+                console.log('answer of ' + eq[j - 1] + eq[j] + eq[j + 1] + "=", answer);
+                answer += '';
+                eq.splice(j - 1, 3, answer)
+                console.log('eq', eq)
+            }
+            console.log('answer', eq[0])
 
+        }
     }
-    }
-            return eq[0]
+    return eq[0]
 }
 
 
@@ -125,25 +126,25 @@ function showAnswer(answer) {
 }
 
 function isOp(c) {
-    if (isLowPriorityOperator(c) || isHiPriorityOperator(c) || isHighestPriorityOperator(c) || c == "=" ) {
+    if (isLowPriorityOperator(c) || isHiPriorityOperator(c) || isHighestPriorityOperator(c) || c == "=") {
         return true;
     }
     return false
 }
-function isHighestPriorityOperator(c){
-    if(c == "(" || c== ")"){
+function isHighestPriorityOperator(c) {
+    if (c == "(" || c == ")") {
         return true;
     }
     return false;
 }
-function isHiPriorityOperator(c){
-    if (c == "*" || c == "/" || c == "%" ||c == "^") {
+function isHiPriorityOperator(c) {
+    if (c == "*" || c == "/" || c == "%" || c == "^") {
         return true;
     }
     return false
 }
-function isLowPriorityOperator(c){
-    if(c == "+" || c == "-"){
+function isLowPriorityOperator(c) {
+    if (c == "+" || c == "-") {
         return true
     }
     return false
@@ -156,52 +157,38 @@ function cancel() {
     showAnswer('Enter Value')
 }
 
-function brackets(){
+function brackets() {
     bracketCount++;
-    if(bracketCount % 2 == 0){
+    if (bracketCount % 2 == 0) {
         return "(";
 
-    } else if(bracketCount % 2 != 0){
+    } else if (bracketCount % 2 != 0) {
         return ")"
     }
 }
 
-function findBrackets(equation){
-    let findBrackets = [];
-    for(let i = 0; i < equation.length; i++){
-        if(equation[i] == '(' || equation[i] == ')'){
-            findBrackets.push(equation[i]);
+
+
+function findBrackets(bracketArr) {
+    let firstPara = [];
+    let openCount = 0;
+
+    for (let i = 0; i < bracketArr.length; i++) {
+        if (bracketArr[i] === '(' && openCount === 0) {
+            firstPara.push(i);
+            openCount++;
+        } else if (bracketArr[i] === '(' && openCount > 0) {
+            openCount++;
+        }
+
+        if (bracketArr[i] === ')' && openCount === 1) {
+            firstPara.push(i);
+            break;
+        } else if (bracketArr[i] === ')' && openCount > 0) {
+            openCount--;
         }
     }
-    sortBrackets(findBrackets);
+
+    return firstPara;
 }
-
-function sortBrackets(bracketArr){
-    let bracketLocation = [];
-    console.log(bracketArr)
-    while(bracketArr > 0){
-        for(let i = 0; i < bracketArr.length; i++){
-            if(bracketArr[i] == '(' && bracketArr[i+1] == ')'){
-
-                bracketLocation.push(i)
-                bracketLocation.push(i+1)
-                bracketArr.splice(0,2)
-            }  else if(bracketArr[i] == ('(') && bracketArr[i] == ('(')){
-                console.log(bracketLocation)
-                console.log(bracketArr)
-                let g = i;
-                while(g != ')'){
-                  g++;  
-                }
-
-                bracketLocation.push(g)
-                bracketLocation.push(g-1)
-
-            }
-        }
-    }
-    return bracketLocation; 
-}
-
-console.log(findBrackets(['(','2','+','2',')','+','(','2','+','2',')']))
-console.log(findBrackets(['(','2','+','2', '+','(','2','+','2',')',')','+','(','2','+','2',')']))
+console.log(findBrackets(['1','+','(','2','+','2',')','+','1']))

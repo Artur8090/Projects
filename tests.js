@@ -1,11 +1,11 @@
-/*
+
 function assert(condition, msg){
     if(!condition){
         throw new Error(msg)
     }
     console.log(msg + ' passed')
 }
-
+/*
 function tests() {
     console.log('run tests')
 
@@ -28,15 +28,10 @@ function tests() {
 tests();
 */
 
-function bracketTrue(condition, msg){
-    if(!condition){
-        throw new Error(msg);
-    } console.log(msg + 'passed')
-}
 
-function test(){
-    bracketTrue(findBrackets(['(',')'])==[0,1],"()==[0,1]")
-    bracketTrue(findBrackets(['(','(',')',')']))
-    bracketTrue(findBrackets(['(',')','(',')']))
-    bracketTrue(findBrackets(['(',')','(','(',')',')']))
+function testBracket(){
+    assert(findBrackets(['1','+','(','2','+','2',')','+','1'])===([2, 6]),"1+(2+2)+1=[2,6]")
+    assert(findBrackets(['(','2','+','2',')','+','(','2','+','3',')'])===([0, 4]),"(2+2)+(2+3)=[0,4]")
+    assert(findBrackets(['(','2','+','5', '+','(','2','+','4',')',')','+','(','3','+','2',')'])===([0, 10]),"(2+2)+(2+2)=[0,4,6,10]")
 }
+testBracket();
