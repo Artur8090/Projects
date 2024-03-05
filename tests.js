@@ -36,3 +36,5 @@ function testBracket(bracketPos,answerPos){
 
 }
 testBracket(findBrackets(['1','+','(','2','+','2',')','+','1']),[2,6]);
+testBracket(findBrackets(['(','2','+','2','(','1','+','1',')',')']),[0,9])
+testBracket(findBrackets(['(','2','+','2',')','+','(','1','+','1',')']),[0,4])
