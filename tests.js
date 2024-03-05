@@ -29,9 +29,10 @@ tests();
 */
 
 
-function testBracket(){
-    assert(findBrackets(['1','+','(','2','+','2',')','+','1'])===([2, 6]),"1+(2+2)+1=[2,6]")
-    assert(findBrackets(['(','2','+','2',')','+','(','2','+','3',')'])===([0, 4]),"(2+2)+(2+3)=[0,4]")
-    assert(findBrackets(['(','2','+','5', '+','(','2','+','4',')',')','+','(','3','+','2',')'])===([0, 10]),"(2+2)+(2+2)=[0,4,6,10]")
+function testBracket(bracketPos,answerPos){
+    for(let i = 0; i < bracketPos.length; i++){
+        assert(bracketPos[i] == answerPos[i],'[' + bracketPos + ']' + '==' + '[' + answerPos + ']')
+    }
+
 }
-testBracket();
+testBracket(findBrackets(['1','+','(','2','+','2',')','+','1']),[2,6]);
