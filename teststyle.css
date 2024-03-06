@@ -1,0 +1,9 @@
+.test-success{
+    background-color: green;
+}
+.test-failed{
+    background-color: red;
+}
+.test-title{
+    font-weight: bold;
+}

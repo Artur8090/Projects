@@ -53,50 +53,44 @@ function equate() {
 }
 
 function doCalculation(eq) {
+    if(eq.indexOf('(') > -1){
+        bracketCalculate(eq)
+    }
+
     console.log('cal equation', eq)
-    let para = eq.filter((s) => (isHighestPriorityOperator(s)))
     let opperators = eq.filter((s) => (isHiPriorityOperator(s)))
     opperators = opperators.concat(eq.filter(s => (isLowPriorityOperator(s))))
     console.log('opperators', opperators)
-    console.log('parantheses', para)
 
-
-    while (eq.length >= 3) {
-        if (para.length > 0) {
-            for (let i = 0; i < para.length; i++) {
-                let start = para.indexOf(para[i]);
-                let end = para.indexOf(para[i + 1])
-                console.log("start:end", start, end)
-
-                for (let j = start; j < end; j++) {
-
-                    let k = eq.indexOf(opperators[j])
-                    answer = calc(eq[k - 1], eq[k + 1], eq[k]);
-                    answer += '';
-                    eq.splice(k - 1, 3, answer);
-                    if (eq.indexOf('(') == (eq.indexOf(')') - 2)) {
-                        eq.splice(eq.indexOf('('), 3, answer);
-                    }
-                }
-                para.splice(0, 2)
-            }
-        } else {
-            for (let i = 0; i < opperators.length; i++) {
-                let j = eq.indexOf(opperators[i]);
-                console.log('index \'' + opperators[i] + "'=", j);
-                answer = calc(eq[j - 1], eq[j + 1], eq[j]);
-                console.log('answer of ' + eq[j - 1] + eq[j] + eq[j + 1] + "=", answer);
-                answer += '';
-                eq.splice(j - 1, 3, answer)
-                console.log('eq', eq)
-            }
-            console.log('answer', eq[0])
-
-        }
+    for (let i = 0; i < opperators.length; i++) {
+        let j = eq.indexOf(opperators[i]);
+        console.log('index \'' + opperators[i] + "'=", j);
+        answer = calc(eq[j - 1], eq[j + 1], eq[j]);
+        console.log('answer of ' + eq[j - 1] + eq[j] + eq[j + 1] + "=", answer);
+        answer += '';
+        eq.splice(j - 1, 3, answer)
+        console.log('eq', eq)
     }
+    console.log('answer', eq[0])
     return eq[0]
 }
 
+function bracketCalculate(eq) {
+    while (eq.indexOf('(') > -1) {
+        let firstBrackets = findBrackets(eq);
+        let innerEq = eq.slice(firstBrackets[0] + 1, firstBrackets[1]);
+        let result = doCalculation(innerEq);
+        eq.splice(firstBrackets[0], firstBrackets[1] - firstBrackets[0] + 1, result+'');
+    }
+    removeOuterParentheses(eq);
+}
+
+function removeOuterParentheses(eq) {
+    if (eq.indexOf('(') === 0 && eq.lastIndexOf(')') === eq.length - 1) {
+        eq.shift();
+        eq.pop();
+    }
+}
 
 
 
@@ -191,4 +185,4 @@ function findBrackets(bracketArr) {
 
     return firstPara;
 }
-console.log(findBrackets(['1','+','(','2','+','2',')','+','1']))
+console.log(findBrackets(['1', '+', '(', '2', '+', '2', ')', '+', '1']))
